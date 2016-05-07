@@ -7,6 +7,7 @@
     "envvar": "1.0.x",
     "express": "4.12.x",
     "jade": "^1.11.0",
+    "pg": "^4.5.5",
     "plaid": "1.0.x"
   },
   "private": true
