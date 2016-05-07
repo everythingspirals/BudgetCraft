@@ -25,12 +25,15 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(session({resave: true, saveUninitialized: true, secret: 'SOMERANDOMSECRETHERE', cookie: { maxAge: 60000 }}));
 
+//Postgres
+var conn = "postgres://postgres:redpanda@159.203.223.194/budgetcraft"
+        
 //Views
 app.set('views', __dirname + '/views')
 app.set('view engine', 'jade');
 
 //Routes
-require('./accounts/accounts.routes')(app, pg);
+require('./accounts/accounts.routes')(app, pg, conn);
 
 //Server
 var server = app.listen(APP_PORT, function () {
