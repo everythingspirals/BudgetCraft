@@ -1,0 +1,11 @@
+include head.jade    
+    meta(name="google-signin-client_id" content="383932393216-bk1i4a3ilbh5q2ju6flv1u6q1pb4i803.apps.googleusercontent.com")
+    title Login
+  body
+    div(class="g-signin2" data-onsuccess="onSignIn")
+    
+    script(src="https://apis.google.com/js/platform.js" async defer)
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js")
+    script(src="https://cdn.plaid.com/link/stable/link-initialize.js")
+    script(src="/js/login.js") 
+
