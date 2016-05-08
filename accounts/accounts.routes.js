@@ -21,6 +21,8 @@ module.exports = function(app, pg, conn){
     app.post('/accounts', function(req, res, next) {
         var public_key = req.body.public_key,
             userId = req.session.user.userId;
+            
+       console.log(req.public_key);
 
         //Connect to Postgresql server  
         pg.connect(conn, function(err, client, done){
@@ -32,12 +34,12 @@ module.exports = function(app, pg, conn){
             }
                         
             //Run createUserKey function and pass in public_key, and test_user
-            var query = client.query("SELECT user_keys_create($1, $2)", [userId, public_key] );
+            client.query("SELECT user_keys_create($1, $2)", [userId, public_key] );
+            
+            done();
                   
-            // After all data is returned, close connection  and res.send result of insert
-            query.on('end', function(){
-                done();
-            });
+            return res.send();
         });
+      
     });
 }
