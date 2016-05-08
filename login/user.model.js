@@ -1,4 +1,4 @@
-var User = function(googleId, avatar, name){
+var User = function(googleId, name, avatar){
     this.googleId = googleId;
     this.name = name;
     this.avatar = avatar; 

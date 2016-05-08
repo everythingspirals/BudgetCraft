@@ -7,11 +7,12 @@ var liveHandler = Plaid.create({
         $.post('/accounts',
             {
                 public_key: token
-            }, function () {
-                window.location = '/accounts';
-            });
-    },
-});
+        })
+        .done(function() {
+            window.location = '/accounts';
+        });
+    }
+   });
 
 $('#liveLinkButton').click(function () {
     liveHandler.open();

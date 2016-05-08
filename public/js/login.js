@@ -1,16 +1,24 @@
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
-  var userId = profile.getId(); // Do not send to your backend! Use an ID token instead.
+  var googleId = profile.getId(); // Do not send to your backend! Use an ID token instead.
   var name = profile.getName();
   var avatar = profile.getImageUrl();
   var email = profile.getEmail();
-  $.post('/login',{
-     userId:userId,
-     name:name,
-     avatar:avatar,
-     email:email 
-  }, 
+  var data = JSON.stringify({
+        googleId : googleId,
+        name : name,
+        avatar : avatar,
+        email : email 
+     });
+  $.ajax({
+     method: "POST",
+     url : "/login",
+     contentType: "application/json",
+     data:data
+  });
+  
+  /*  
   function(){
       window.location.href = "/user";
-  });
+  });*/
 }

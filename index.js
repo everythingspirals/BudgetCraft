@@ -21,9 +21,15 @@ var plaidClient = new plaid.Client(PLAID_CLIENT_ID, PLAID_SECRET, plaid.environm
 
 //Express
 var app = express();
+
 app.use(express.static('public'));
 app.use(bodyParser.json());
-app.use(session({resave: true, saveUninitialized: true, secret: 'SOMERANDOMSECRETHERE', cookie: { maxAge: 60000 }}));
+app.use(session({ 
+  name: 'server-session-cookie-id',
+  secret: 'my express secret',
+  saveUninitialized: true,
+  resave: true
+}));
 
 //Postgres
 var conn = "postgres://postgres:redpanda@159.203.223.194/budgetcraft"
@@ -33,9 +39,12 @@ app.set('views', __dirname + '/views')
 app.set('view engine', 'jade');
 
 //Routes
-require('./accounts/accounts.routes')(app, pg, conn);
+var accounts = require('./accounts/accounts.routes')(app, pg, conn);
+var login = require('./login/login.routes')(app, pg, conn);
 
 //Server
 var server = app.listen(APP_PORT, function () {
   console.log('BudgetCraft listening on port ' + String(APP_PORT));
 });
+
+module.exports = app;
