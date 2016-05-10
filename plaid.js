@@ -1,25 +1,27 @@
-module.exports = function(){
-    
+module.exports = function(plaidClient){
     var PlaidHelper = {
-        exchangeToken: function (public_token, callback) {
+        exchangeToken: function (public_token) {
             plaidClient.exchangeToken(public_token, function (err, tokenResponse) {
+                 console.log("public key ", public_token);
                 if (err != null) {
-                    res.json({ error: 'Unable to exchange public_token' });
+                    console.log("error: ", err);
                 } else {
-                    var access_token = tokenResponse.access_token;
-                    callback(access_token);
+                    return tokenResponse.access_token;
                 }
             });
         },
-
-        getConnectedUser(access_token) {
+        getConnectUser(access_token) {
             plaidClient.getConnectUser(access_token, function (err, connectResponse) {
                 if (err != null) {
-                    res.json({ error: 'Unable to pull accounts from the Plaid API' });
+                    console.log(err);
                 } else {
-                    res.json({ accounts: connectResponse.accounts });
+                    console.log(connectResponse);
+                    return connectResponse.accounts;
                 }
             });
         }
-    }
+    };
+    
+    return PlaidHelper;
 }
+

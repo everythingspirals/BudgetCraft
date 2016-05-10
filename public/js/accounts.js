@@ -1,12 +1,17 @@
 var liveHandler = Plaid.create({
     clientName: 'SUM',
     env: 'tartan',
-    product: 'auth',
+    product: 'connect',
     key: 'cca99278d5ff22924a4c21a1281086',
     onSuccess: function (token) {
-        $.post('/accounts',
-            {
-                public_key: token
+        var data = JSON.stringify({
+            public_key: token
+        });
+        $.ajax({
+            method: "POST",
+            url : "/accounts",
+            contentType: "application/json",
+            data:data
         })
         .done(function() {
             window.location = '/accounts';

@@ -1,0 +1,30 @@
+html,body{
+    height:100%;
+}
+
+.content{
+    height:100%;
+    background:#f5f5f5;
+    padding-top:100px;
+}
+
+.navbar-inverse{
+    background:rgb(51,51,51);
+}
+
+.list-group-inverse .list-group-item{
+    background:#373a3c;
+    color:white;
+}
+
+.list-group-header{
+    background:#eee;
+}
+
+.list-group-item.list-group-table{
+    padding:0;  
+}
+
+.list-group-item.list-group-table .table{
+    margin:0; 
+}

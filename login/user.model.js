@@ -5,8 +5,13 @@ var User = function(googleId, name, avatar){
 }
 
 User.prototype = {
-    login : function(){
-        
+    googleId:null,
+    name:null,
+    avatar:null,
+    userId:null,
+    
+    login : function(userId){
+        this.userId = userId;
     }    
 }
 

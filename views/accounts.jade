@@ -1,12 +1,46 @@
 include head.jade
     title Account
+    link(rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css")
+    link(rel="stylesheet" href="css/accounts.css")
+    link(rel="stylesheet" href="css/main.css")
+    
   body 
-    ul
-      each account in model.accounts
-        li 
-          b Name: 
-          | #{account.name}
-    div(class="radio-button radio-right" id="liveLinkButton") Add Bank Account
+    nav(class="navbar navbar-dark navbar-fixed-top bg-inverse")
+      a(class="navbar-brand" href="#") BudgetCraft
+      div(class="form-inline pull-xs-right")
+        button(class="btn btn-primary-outline" id="liveLinkButton") Add Bank Account
+         
+    div(class="content container-fluid")
+
+      div(class="row")
+      
+        div(class="col-md-8")
+          div(class="accounts")
+            ul(class="list-group")
+              li(class="list-group-item list-group-header") 
+                  b Budget
+              li(class="list-group-item") Apartment
+              li(class="list-group-item") Subscriptions
+              li(class="list-group-item") Medical
+              li(class="list-group-item") Resturants
+              li(class="list-group-item") Shopping 
+              
+        div(class="col-md-4")
+          div(class="transactions")
+            ul(class="list-group")
+              li(class="list-group-item list-group-header") 
+                  b Unallocated Transactions
+              each bank in model.banks
+                li(class="list-group-item list-group-header") 
+                  b Account
+                  span(class="label label-default label-pill pull-xs-right") #{bank.transactions.length}
+                li(class="list-group-item list-group-table")
+                  table(class="table")
+                    each transaction in bank.transactions
+                      tr
+                        td #{transaction.name}
+                        td #{transaction.amount}
+
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js")
     script(src="https://cdn.plaid.com/link/stable/link-initialize.js")
-    script(src="/js/accounts.js") 
+    script(src="/js/accounts.js")

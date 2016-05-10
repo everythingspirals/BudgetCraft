@@ -15,10 +15,7 @@ function onSignIn(googleUser) {
      url : "/login",
      contentType: "application/json",
      data:data
+  }).done(function () {
+      window.location = '/accounts';
   });
-  
-  /*  
-  function(){
-      window.location.href = "/user";
-  });*/
 }
