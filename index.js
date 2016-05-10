@@ -41,6 +41,7 @@ app.set('view engine', 'jade');
 //Routes
 var accounts = require('./accounts/accounts.routes')(app, pg, conn, plaidClient);
 var login = require('./login/login.routes')(app, pg, conn);
+var budgets = require('./budgets/budgets.routes')(app, pg, conn);
 
 //Server
 var server = app.listen(APP_PORT, function () {
